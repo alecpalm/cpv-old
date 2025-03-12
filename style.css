@@ -1,0 +1,73 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "Public Sans";
+}
+
+.gradient-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh; /* Ensures full viewport height */
+    background: linear-gradient(90deg, red, blue);
+    background-size: 200% 200%;
+    animation: gradient-animation 7s linear infinite;
+    overflow: auto; /* Allows scrolling within */
+    padding: 20px; /* Optional padding */
+}
+
+h1,p,h2 {
+    color: white;
+    text-align: center;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 100% 0;
+    }
+    50% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.logo {
+    max-width: 300px; /* Adjust the size as needed */
+}
+@font-face {
+    font-family: "Public Sans";
+    src: url('https://raw.githubusercontent.com/uswds/public-sans/f8e38ba18f1963edd4d09c9194472a30d55eca2a/fonts/webfonts/PublicSans-SemiBold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+a {
+    color: white;
+    text-decoration: true;
+    font-size: 23px;
+}
+
+.header-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 20px; 
+    text-align: center;
+}
+
+.logosmall {
+    max-width: 275px; /* Adjust the size as needed */
+}

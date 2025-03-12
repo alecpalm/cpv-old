@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.png" type="image/x-icon">
+    <title>CVP: Website Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <meta property="og:image" content="images/banner.png">
+    <meta name="twitter:card" content="images/banner.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: left;
+            transition: transform 0.2s ease-in-out;
+            overflow: hidden;
+            position: relative;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            border-radius: 5px;
+        }
+        .blue { background-color: #3b82f6; }
+        .red { background-color: #ef4444; }
+        .green { background-color: #10b981; }
+        .yellow { background-color: #f59e0b; }
+        .purple { background-color: #8b5cf6; }
+        
+        .card a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <img src="../CVP-RB.png" alt="Civic Voice Partners Logo" class="logo animate__animated animate__fadeInDown">
+    <h1 class="animate__animated animate__fadeInDown">Website Portfolio</h1>
+    <div class="container" id="portfolio"></div>
+    <script>
+        const websites = [
+            { name: "Ben Reno-Weber", url: "https://www.benforlou.com/", image: "images/benforlou.png", description: "Louisville KY Metro Council", tag: "Modern", tagColor: "blue" },
+            { name: "Kara Murray-Badal", url: "https://www.kmb4oakland.com/", image: "images/kmb4oakland.png", description: "Oakland City Council", tag: "Retro Modern", tagColor: "red" },
+            { name: "Debbie Wesslund", url: "https://web.archive.org/web/20240322002743/https://www.debbiewesslund.com/", image: "images/debbiewesslund.png", description: "KY State House", tag: "Impactful Modern", tagColor: "green" },
+            { name: "Matt Golden", url: "https://web.archive.org/web/20240917052804/https://www.mattformetro.com/", image: "images/mattformetro.png", description: "Louisville KY Metro Council", tag: "Modern", tagColor: "yellow" },
+            { name: "Rick Blackwell", url: "https://web.archive.org/web/20240616091840/https://www.rickforcouncil.com/", image: "images/rickforcouncil.png", description: "Louisville KY Metro Council", tag: "Classic", tagColor: "purple" }
+        ];
+        
+        const portfolioContainer = document.getElementById('portfolio');
+        websites.forEach(site => {
+            const card = document.createElement('a');
+            card.href = site.url;
+            card.target = "_blank";
+            card.className = "card animate__animated animate__fadeInUp";
+            card.style.textDecoration = "none";
+            card.style.color = "black";
+            card.innerHTML = `
+                <span class="tag ${site.tagColor}">${site.tag}</span>
+                <img src="${site.image}" alt="${site.name}">
+                <h2>${site.name}</h2>
+                <p>${site.description}</p>
+            `;
+            portfolioContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>
