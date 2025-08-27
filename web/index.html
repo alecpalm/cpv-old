@@ -72,7 +72,7 @@
         .modal video { display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; }
         .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,1px,1px); white-space: nowrap; border: 0; }
         
-        .card-button { cursor: pointer; border: none; background: none; padding: 0; text-align: left; }
+        .card-button { cursor: pointer; border: none; background: none; padding: 0; text-align: left; display: block; width: 100%; }
     </style>
 </head>
 <body>
@@ -87,7 +87,7 @@
                 <button id="videoModalClose" class="modal-close" aria-label="Close video">×</button>
             </div>
             <div class="modal-body">
-                <video id="briefbaseVideo" controls playsinline poster="images/brief-base.png">
+                <video id="briefbaseVideo" controls playsinline>
                     <source src="images/brief-base-vid.mov" type="video/mp4" />
                     <p class="visually-hidden">Your browser does not support HTML5 video.</p>
                 </video>
@@ -118,8 +118,7 @@
                 tag: "In Development",
                 tagColor: "blue",
                 type: "modal",
-                videoSrc: "images/brief-base-vid.mov",
-                poster: "images/brief-base.png"
+                videoSrc: "images/brief-base-vid.mov"
             }
         ];
 
@@ -166,7 +165,6 @@
                 videoEl.pause();
                 const source = videoEl.querySelector('source');
                 source.src = site.videoSrc;
-                if (site.poster) videoEl.setAttribute('poster', site.poster);
                 videoEl.load();
             }
             backdrop.setAttribute('aria-hidden', 'false');
