@@ -42,6 +42,46 @@ const websites = [
     description: "Empowering communities through strategic policy.",
     tag: "Progressive",
     tagColor: "bg-purple-500"
+  },
+  {
+    name: "Steve Healey",
+    url: "https://www.healeyforsheriff.com/",
+    image: "/images/steve-healey.png",
+    description: "Experienced law enforcement officer running for Jefferson County Sheriff.",
+    tag: "Authoritative",
+    tagColor: "bg-blue-500"
+  },
+  {
+    name: "Sarah Martin",
+    url: "https://votesarahmartin.com/",
+    image: "/images/sarah-martin.png",
+    description: "16+ years Assistant County Attorney running for Jefferson County Attorney.",
+    tag: "Professional",
+    tagColor: "bg-red-500"
+  },
+  {
+    name: "Civic Voice Partners",
+    url: "https://civicvoicepartners.com/",
+    image: "/images/Civic-Voice-Partners.png",
+    description: "Advocacy, campaigns, events, and outreach to amplify civic voices.",
+    tag: "Consulting",
+    tagColor: "bg-green-500"
+  },
+  {
+    name: "Linda Swain",
+    url: "https://www.swainforschools.com/",
+    image: "/images/Linda-swain.png",
+    description: "Committed to excellent education and community collaboration in Newton.",
+    tag: "Educational",
+    tagColor: "bg-yellow-500"
+  },
+  {
+    name: "Jonathan Greene",
+    url: "https://www.jonathan4newton.com/",
+    image: "/images/Jonathan.png",
+    description: "Supporting and challenging students to thrive in Newton schools.",
+    tag: "Community-Focused",
+    tagColor: "bg-purple-500"
   }
 ];
 
