@@ -259,11 +259,16 @@
             }
         ];
         
-        // Function to get social image using a proxy service
-        function getSocialImage(url) {
-            // Using a free service to get social preview images
-            // Alternative: https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url
-            return `https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/png?url=${encodeURIComponent(url)}&width=600&height=315&format=png&quality=80`;
+        // Function to get social image using multiple fallback services
+        function getSocialImage(url, attempt = 1) {
+            if (attempt === 1) {
+                // Try screenshot service first
+                return `https://shot.screenshotapi.net/screenshot?token=DEMO_TOKEN&url=${encodeURIComponent(url)}&width=600&height=315&file_type=png&wait_for_event=load`;
+            } else if (attempt === 2) {
+                // Fallback to another service
+                return `https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1200&viewport.height=630`;
+            }
+            return null;
         }
         
         // Function to create fallback image with website name
@@ -309,25 +314,36 @@
             img.className = 'card-image';
             img.alt = site.name;
             
-            // Try to load social image, fallback to placeholder
-            if (site.socialImage) {
-                img.src = site.socialImage;
-                img.onerror = () => {
-                    // If social image fails, try screenshot service
-                    img.src = getSocialImage(site.url);
-                    img.onerror = () => {
-                        // If screenshot service fails, show placeholder
+            // Try to load social image with multiple fallbacks
+            let attemptCount = 0;
+            
+            function tryLoadImage() {
+                attemptCount++;
+                
+                if (site.socialImage && attemptCount === 1) {
+                    img.src = site.socialImage;
+                } else {
+                    const screenshotUrl = getSocialImage(site.url, attemptCount - (site.socialImage ? 1 : 0));
+                    if (screenshotUrl) {
+                        img.src = screenshotUrl;
+                    } else {
+                        // All attempts failed, show placeholder
                         imageContainer.innerHTML = `<div class="card-image-placeholder">${site.name}</div>`;
-                    };
-                };
-            } else {
-                // Use screenshot service directly
-                img.src = getSocialImage(site.url);
+                        return;
+                    }
+                }
+                
                 img.onerror = () => {
-                    // If screenshot service fails, show placeholder
-                    imageContainer.innerHTML = `<div class="card-image-placeholder">${site.name}</div>`;
+                    if (attemptCount < 3) {
+                        setTimeout(tryLoadImage, 1000); // Wait 1 second before retry
+                    } else {
+                        // All attempts failed, show placeholder
+                        imageContainer.innerHTML = `<div class="card-image-placeholder">${site.name}</div>`;
+                    }
                 };
             }
+            
+            tryLoadImage();
             
             imageContainer.appendChild(img);
             
